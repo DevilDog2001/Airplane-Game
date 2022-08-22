@@ -7,7 +7,6 @@
 	<div id="ocean">
 		<div id="players">
 			<div class="player"></div>
-		<div id="enemy.png">
 			<div class="enemy"></div>
 	</div>	
 	
@@ -18,7 +17,7 @@
 			top: 620
 		}
 
-		var enemies = [
+		var enemies = [//Enemies were put down as an array
 		   {left:350, top:200},
 		   {left:450, top:250}
 		]
@@ -28,6 +27,27 @@
 			document.getElementById("players").innerHTML = content;// allows Java to grab Id of players style from CSS
 		}
 		drawplayer();
+
+		function drawEnemies() {
+			content = "";
+			console.log(enemies);
+			for(var idx=0; idx<enemies.length; idx++){
+			content += "<div class='player' style='left:"+enemies[idx].left+"px; top:"+enemies[idx].top+"px'</div>"		
+			}
+			document.getElementById("enemies").innerHTML = content;
+		}
+
+		document.onkeydown = function(e) {//Function allows control over player
+			console.log(e);
+			if(e.keyCode == 37){//Left
+				player.left = player.left - 10;
+			}
+			if(e.keyCode == 39){//Right
+				player.left = player.left + 10;
+			}
+			drawplayer();
+				
+		}
 
 	</script>
 </body>
