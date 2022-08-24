@@ -18,7 +18,9 @@
 
 		var enemies = [//Enemies were put down as an array
 		   {left:350, top:200},
-		   {left:450, top:250}
+		   {left:450, top:250},
+		   {left:550, top:150},
+		   {left:420, top:350}
 		]
 
 		function drawplayer(){
@@ -31,7 +33,7 @@
 			content = "";
 			console.log(enemies);
 			for(var idx=0; idx<enemies.length; idx++){
-				content += "<div class='enemy' style='left:"+enemies[idx].left+"px; top:"+enemies[idx].top+"px'</div>";
+				content += "<div class='enemy' style='left:"+enemies[idx].left+"px; top:"+enemies[idx].top+"px'></div>";
 			}
 			document.getElementById("enemies").innerHTML = content;
 		}
@@ -45,9 +47,13 @@
 			if(e.keyCode == 39){//Right
 				player.left = player.left + 10;
 			}
-			drawplayer();
-
-				
+			if (e.keyCode == 38 && player.top > 500){//Up
+				player.top = player.top - 10
+			}
+			if (e.keyCode == 40 && player.top < 625 ){//Down
+				player.top = player.top + 10
+			}
+			drawplayer();			
 		}
 
 	</script>

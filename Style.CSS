@@ -1,17 +1,17 @@
 #ocean { 
-	background: url("ocean.jpg");
+	background-image: url("ocean.jpg");
 	width: 900px;
 	height: 700px;
 }
 .player {
 	position: absolute;
-	background: url("player.png");
+	background-image: url("player.png");
 	width: 70px;
 	height: 75px;
 }
 .enemy {
 	position: absolute;
-	background: url("enemy.png");
+	background-image: url("enemy.png");
 	width: 70px;
 	height: 75px;
 }
