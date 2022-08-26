@@ -7,8 +7,8 @@
 	<div id="ocean">
 		<div id="players"></div>
 		<div id="enemies"></div>
-	</div>	
-	
+		<div id="missiles"></div>	
+	</div>
 	<script type="text/javascript">
 
 		var player = {
@@ -23,11 +23,12 @@
 		   {left:420, top:350}
 		]
 
+		var missiles = []
+
 		function drawplayer(){
 			content = "<div class='player' style='left:"+player.left+"px; top:"+player.top+"px'</div>";//helps set player location using the var player commands & CSS style 
 			document.getElementById("players").innerHTML = content;// allows Java to grab Id of players style from CSS
 		}
-		drawplayer();
 
 		function drawenemies(){
 			content = "";
@@ -37,7 +38,20 @@
 			}
 			document.getElementById("enemies").innerHTML = content;
 		}
-		drawenemies();
+
+		function drawMissiles(){
+			content = "";
+			for(var idx=0; idx<missiles.length; idx++){
+				content += "<div class='missile' style='left:"+missiles[idx].left+"px; top:"+missiles[idx].top+"px'></div>"
+			}
+			document.getElementById("missiles").innerHTML = content;
+		}
+
+		function moveEnemies(){
+			for(var idx=0; idx<enemies.length; idx++){
+				enemies[idx].top = enemies[idx].top + 5;
+			}	
+		}
 
 		document.onkeydown = function(e) {//Function allows control over player
 			console.log(e);
@@ -53,8 +67,25 @@
 			if (e.keyCode == 40 && player.top < 625 ){//Down
 				player.top = player.top + 10
 			}
-			drawplayer();			
+			if (e.keyCode == 32 ){//space bar 
+				missles.push( {left: (player.left+34), top: (player.top-8) } )
+				drawMissiles();
+			}
+			drawplayer();
+						
 		}
+
+		function gameLoop(){//Everything within the Loop will reset including other functions as well
+			console.log("gameLoop is running!")
+
+			drawplayer();
+
+			moveEnemies();
+			drawenemies();
+			drawMissiles(); 
+			setTimeout(gameLoop,1000)
+		}
+		gameLoop();
 
 	</script>
 </body>
